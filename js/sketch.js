@@ -24,34 +24,54 @@ let input = document.querySelector('input');
 // page.style.backgroundImage = `${imgurls[3]}`;
 // page.style.["background-color"] = "blue";
 
+let letter_archive = {
+  'a':'01100001',
+  'b':'01100010',
+  'c':'01100011',
+  'd':'01100100',
+  'e':'01100101',
+  'f':'01100110',
+  'g':'01100111',
+  'h':'01101000',
+}
+
 
 let archive = [
   {'name':'Red Jacket',
-  'binary_id': ['01010010','01100101','01100100','00100000','01001010','01100001','01100011','01101011','01100101','01110100'],
+  'name_binary': ['01010010','01100101','01100100','00100000','01001010','01100001','01100011','01101011','01100101','01110100'],
+  'binary_id': ['01100001'],
   'colors':['#984149', '#545456', '#A59F99', '#CD8383', '#CD8F72', '#FDFEE5', '#7E8995', '#A1988E']},
   {'name':'Mohongo',
-  'binary_id':['01001101','01101111','01101000','01101111','01101110','01100111','01101111'],
+  'name_binary':['01001101','01101111','01101000','01101111','01101110','01100111','01101111'],
+  'binary_id': ['01100010'],
   'colors': ['#A84C4C', '#C9C1BA', '#DEAFAA', '#FBF0E5', '#B8876E', '#B8615A', '#C09D79', '#6E5548']},
   {'name':'Sharitarish',
-  'binary_id':['01010011','01101000','01100001','01110010','01101001','01110100','01100001','01110010','01101001','01110011','01101000'],
+  'name_binary':['01010011','01101000','01100001','01110010','01101001','01110100','01100001','01110010','01101001','01110011','01101000'],
+  'binary_id': ['01100011'],
   'colors': ['#AF5F53', '#603631', '#A3705C', '#804A40', '#3F3732', '#8C887D', '#A6857B', '#AE988B']},
   {'name':'Sequoyah',
-  'binary_id':['01010011','01100101','01110001','01110101','01101111','01111001','01100001','01101000'],
+  'name_binary':['01010011','01100101','01110001','01110101','01101111','01111001','01100001','01101000'],
+  'binary_id': ['01100100'],
   'colors': ['#973E47', '#442727', '#373A41', '#808589', '#FADEA7', '#A9A196', '#443838', '#BD806B']},
   {'name':'Tenskwautawaw',
-  'binary_id':['01010100','01100101','01101110','01110011','01101011','01110111','01100001','01110101','01110100','01100001','01110111','01100001','01110111'],
+  'name_binary':['01010100','01100101','01101110','01110011','01101011','01110111','01100001','01110101','01110100','01100001','01110111','01100001','01110111'],
+  'binary_id': ['01100101'],
   'colors': ['#613F38', '#9A3F3A', '#4C5969', '#D7BA92', '#71726C', '#393C43', '#825648', '#C08C76']},
   {'name':'Yoholo Micco',
-  'binary_id':['01011001','01101111','01101000','01101111','01101100','01101111','00100000','01001101','01101001','01100011','01100011','01101111'],
+  'name_binary':['01011001','01101111','01101000','01101111','01101100','01101111','00100000','01001101','01101001','01100011','01100011','01101111'],
+  'binary_id': ['01100110'],
   'colors': ['#9C4341', '#FFFEE5', '#6C838E', '#7C8375', '#E0A377', '#A3967B', '#896256', '#2D2E2E']},
   {'name':'Mistippee',
-  'binary_id':['01001101','01101001','01110011','01110100','01101001','01110000','01110000','01100101','01100101'],
+  'name_binary':['01001101','01101001','01110011','01110100','01101001','01110000','01110000','01100101','01100101'],
+  'binary_id': ['01100111'],
   'colors': ['#702F32', '#84807B', '#241B1C', '#FEFBD8', '#7B7D74', '#6B3C32', '#8F7A6C', '#CC9583']},
   {'name':'Corn Plant',
-  'binary_id':['01000011','01101111','01110010','01101110','00100000','01010000','01101100','01100001','01101110','01110100'],
+  'name_binary':['01000011','01101111','01110010','01101110','00100000','01010000','01101100','01100001','01101110','01110100'],
+  'binary_id': ['01101000'],
   'colors': ['#B8705F', '#4C4B46', '#C3B9AB', '#748597', '#C0757C', '#F8DEAA', '#8B9884', '#A56E55']},
   {'name':'Test',
-  'binary_id':['01000011'],
+  'name_binary':['00000000'],
+  'binary_id': [],
   'colors': ['#B8705F', '#4C4B46', '#C3B9AB', '#748597', '#C0757C', '#F8DEAA', '#8B9884', '#A56E55']}
 ]
 
@@ -144,28 +164,45 @@ function getRandomInt(max) {
 
 
 
-function keyPressed() {
-  if (key === '0'){
-    id_cred += '0';
-    console.log(`id_cred: ${id_cred}`);
-  } else if (key === '1') {
-    id_cred += '1';
-    console.log(`id_cred: ${id_cred}`);
-  } else if (keyCode === ENTER){
-    console.log('Checking ID!');
-    checkID();
-  } else if (keyCode === RETURN) {
-    console.log('Checking ID!');
-    checkID();
-  }
-}
+// function keyPressed() {
+//   if (key === '0'){
+//     id_cred += '0';
+//     console.log(`id_cred: ${id_cred}`);
+//   } else if (key === '1') {
+//     id_cred += '1';
+//     console.log(`id_cred: ${id_cred}`);
+//   } else if (keyCode === ENTER){
+//     console.log('Checking ID!');
+//     checkID();
+//   } else if (keyCode === RETURN) {
+//     console.log('Checking ID!');
+//     checkID();
+//   }
+// }
 
-function checkSpecimenID(evt) {
+function receiveInput(evt) {
   evt.preventDefault();
+  checkID(input.value);
   console.log("THIS IS WHAT YOU'RE LOOKING FOR:" + input.value);
 }
 
-function checkID() {
+// function checkID(submittedID) {
+//   for (let person in archive) {
+//     let s = archive[person].binary_id.join('');
+//     console.log(`id_cred = ${id_cred}`);
+//     console.log(`s = ${s}`);
+//     if (id_cred == s) {
+//       id_cred = '';
+//       console.log(`${archive[person].name} is a match!`);
+//       return displayPerson(archive[person]);
+//     } else {
+//       console.log(`${archive[person].name} is not a match`);
+//     }
+//   }
+//   id_cred = '';
+// }
+
+function checkID(submittedID) {
   for (let person in archive) {
     let s = archive[person].binary_id.join('');
     console.log(`id_cred = ${id_cred}`);

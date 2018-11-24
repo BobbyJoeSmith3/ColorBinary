@@ -8,7 +8,7 @@
   </head>
   <body class="blah">
     <div class="container">
-      <form onsubmit="checkSpecimenID(event)">
+      <form onsubmit="receiveInput(event)">
         <input type="text" onblur="if (this.value == '') { this.value = 'Input Specimen ID: 01000011'; }" onfocus="if(this.value == 'Input Specimen ID: 01000011') { this.value = ''; }" value="Input Specimen ID: 01000011" name="specimen_id" maxlength="8"></input>
       </form>
     </div>
