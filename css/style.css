@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Serif');
+
+html, body {
+  margin: 0;
+  padding: 0;
+
+}
+
+body {
+  background-image: url('../img/jefferson_grid_1.jpg');
+  /* background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center top; */
+  font-family: 'IBM Plex Serif', serif;
+  text-align: center;
+  font-size: 16px;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  /* margin: 0 auto; */
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 10% auto 10%;
+  grid-template-rows: 10% auto 10%;
+  grid-template-areas:
+    "header-left header-center header-right"
+    "main-left main-center main-right"
+    "footer-left footer-center footer-right";
+}
+
+form {
+  width: 100%;
+  max-width: 40em;
+  grid-area: main-center;
+  align-self: center;
+  justify-self: center;
+}
+
+input {
+  width: 100%;
+  height: 3em;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  font-family: 'IBM Plex Serif', serif;
+  font-size: 1em;
+  color: #d0d0d0;
+}
