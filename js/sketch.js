@@ -23,7 +23,8 @@ let input = document.querySelector('input');
 // page.style.["background-color"] = "blue";
 
 
-let imgurls = ['url(../img/jefferson_grid_1.jpg)', 'url(../img/jefferson_grid_2.jpg)', 'url(../img/jefferson_grid_3.jpg)', 'url(../img/jefferson_grid_4.jpg)', 'url(../img/jefferson_grid_5.jpg)']
+let imgurls = [
+  'url(img/jefferson_grid_1.jpg)', 'url(img/jefferson_grid_2.jpg)', 'url(img/jefferson_grid_3.jpg)', 'url(img/jefferson_grid_4.jpg)', 'url(img/jefferson_grid_5.jpg)']
 
 let letter_archive = {
   'a':'01100001',
@@ -116,7 +117,7 @@ let archive = [
   'colors': ['#B8705F', '#4C4B46', '#C3B9AB', '#748597', '#C0757C', '#F8DEAA', '#8B9884', '#A56E55']},
   {'name':'Test',
   'name_binary':['00000000'],
-  'binary_id': [],
+  'binary_id': ['00000000'],
   'colors': ['#B8705F', '#4C4B46', '#C3B9AB', '#748597', '#C0757C', '#F8DEAA', '#8B9884', '#A56E55']}
 ]
 
@@ -206,61 +207,26 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
-
-
-
-// function keyPressed() {
-//   if (key === '0'){
-//     id_cred += '0';
-//     console.log(`id_cred: ${id_cred}`);
-//   } else if (key === '1') {
-//     id_cred += '1';
-//     console.log(`id_cred: ${id_cred}`);
-//   } else if (keyCode === ENTER){
-//     console.log('Checking ID!');
-//     checkID();
-//   } else if (keyCode === RETURN) {
-//     console.log('Checking ID!');
-//     checkID();
-//   }
-// }
-
 function receiveInput(evt) {
   evt.preventDefault();
   checkID(input.value);
   console.log("THIS IS WHAT YOU'RE LOOKING FOR:" + input.value);
 }
 
-// function checkID(submittedID) {
-//   for (let person in archive) {
-//     let s = archive[person].binary_id.join('');
-//     console.log(`id_cred = ${id_cred}`);
-//     console.log(`s = ${s}`);
-//     if (id_cred == s) {
-//       id_cred = '';
-//       console.log(`${archive[person].name} is a match!`);
-//       return displayPerson(archive[person]);
-//     } else {
-//       console.log(`${archive[person].name} is not a match`);
-//     }
-//   }
-//   id_cred = '';
-// }
-
 function checkID(submittedID) {
   for (let person in archive) {
-    let s = archive[person].binary_id.join('');
-    console.log(`id_cred = ${id_cred}`);
-    console.log(`s = ${s}`);
-    if (id_cred == s) {
-      id_cred = '';
+    let personID = archive[person].binary_id.join('');
+    console.log(`Checking ID: ${submittedID}`);
+    console.log(`person ID = ${personID}`);
+    if (submittedID == personID) {
+      // submittedID = '';
       console.log(`${archive[person].name} is a match!`);
       return displayPerson(archive[person]);
     } else {
       console.log(`${archive[person].name} is not a match`);
     }
   }
-  id_cred = '';
+  // submittedID = '';
 }
 
 function displayPerson(person) {
