@@ -203,10 +203,6 @@ function displayBinary(binary) {
   }
 }
 
-// function getRandomInt(max) {
-//   return Math.floor(Math.random() * Math.floor(max));
-// }
-
 /**
  * Returns a random integer between min (inclusive) and max (inclusive).
  * The value is no lower than min (or the next integer greater than min
@@ -249,50 +245,11 @@ function displayPerson(person) {
 
 
 // PAGE CONSTRUCTOR
-/*
-  0. Create new Window
-    A. Specify Random Size and Placement of window
-      // Insure window will always fit on screen
-      let winWidth = getRandomInt(200, screen.availWidth);
-      let winHeight = getRandomInt(200, screen.availHeight);
-      let winLocX = getRandomInt(0, screen.availWidth - winWidth);
-      let winLocY = getRandomInt(0, screen.availHeight - winHeight);
-      var windowObjectReference;
-      var strWindowFeatures = `width=${winWidth),height=${winHeight},left=${winLocX},top=${winLocY},resizable=yes,scrollbars=yes`;
-      function openRequestedPopup() {
-        windowObjectReference = window.open("", "_blank", strWindowFeatures);
-      }
-  1. Create new HTML document
-    var doc = document.implementation.createHTMLDocument("New Document");
-  2. Append Necessary Elements
-    A. CSS Style Sheet
-      var head = document.head || document.getElementsByTagName('head')[0],
-      var link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.type = 'text/css';
-      link.href = 'css/style.css';
-      head.appendChild(style);
-    B. Javascript Scripts
-      var script1, script2, script3, script4 = document.createElement('script');
-      script1.src = 'https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/p5.min.js';
-      script2.src = 'https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/addons/p5.dom.min.js';
-      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/addons/p5.sound.min.js';
-      script4.src = 'js/sketch.js';
-      page.appendChild(script1);
-      page.appendChild(script2);
-      page.appendChild(script3);
-      page.appendChild(script4);
-    C. HTML Page Elements
-      i. New Random Document Background
-
-*/
-
-function openNewWindow(winName) {
-  createNewWindow(winName);
-  //createNewHTMLDoc(winName);
+function openNewWindow() {
+  createNewWindow();
 }
 
-function createNewWindow(strWindowName) {
+function createNewWindow() {
   /*
     — Create new Window
     — Specify Random Size and Placement of window
@@ -308,44 +265,8 @@ function createNewWindow(strWindowName) {
   // Else if window is already open, bring to front
   if (windowObjectReference == null || windowObjectReference.closed) {
     // window.open("strWindowURL, strWindowName", "strWindowFeatures")
-    windowObjectReference = window.open("index.html", strWindowName, strWindowFeatures);
+    windowObjectReference = window.open("index.html", "_blank", strWindowFeatures);
   } else {
     windowObjectReference.focus();
   };
-}
-
-function createNewHTMLDoc(strWindowName) {
-  let doc = document.implementation.createHTMLDocument(strWindowName);
-  // Construct Head
-  let head = doc.head || doc.getElementsByTagName('head')[0];
-  head.insertAdjacentHTML('afterbegin',
-    `<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">`
-  );
-  let styleLink = doc.createElement('link');
-  styleLink.rel = 'stylesheet';
-  styleLink.type = 'text/css';
-  styleLink.href = 'css/style.css';
-  head.appendChild(styleLink);
-
-  // Insert HTML Page Elements
-  let body = doc.body;
-  body.insertAdjacentHTML('afterbegin',
-  `<div class="container">
-    <form onsubmit="receiveInput(event)">
-      <input type="text" onblur="if (this.value == '') { this.value = 'Input Specimen ID: 01000011'; }" onfocus="if(this.value == 'Input Specimen ID: 01000011') { this.value = ''; }" value="Input Specimen ID: 01000011" name="specimen_id" maxlength="8"></input>
-    </form>
-  </div>`
-  );
-
-  // Append JavaScript Links to Body
-  var script1, script2, script3, script4 = doc.createElement('script');
-  script1.src = 'https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/p5.min.js';
-  script2.src = 'https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/addons/p5.dom.min.js';
-  script.src = 'https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.1/addons/p5.sound.min.js';
-  script4.src = 'js/sketch.js';
-  body.appendChild(script1);
-  body.appendChild(script2);
-  body.appendChild(script3);
-  body.appendChild(script4);
 }
